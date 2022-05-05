@@ -8,3 +8,8 @@ exports.getMatchedUsers = (req,res,next) => {
  })
  res.status(200).json(matched);
 }
+
+exports.getUsers = (req,res,next) => {
+    const matched = Object.values(USER)
+    res.status(200).json(matched);
+}

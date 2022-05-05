@@ -1,1 +1,15 @@
-<p>test-questions works!</p>
+<mat-tab-group mat-align-tabs="center" >
+    <ng-container *ngFor="let item of categoryArr"> 
+        <mat-tab [label]="item.category">
+            <span id="center-card"  *ngFor="let ques of item.questions">
+                <mat-card>
+                    <mat-card-title>{{ques.topic}}</mat-card-title>
+                    <mat-card-subtitle>{{ques.desc}}</mat-card-subtitle>
+                    <mat-card-actions>
+                      <button mat-raised-button color="primary" (click)="onClickButton(ques.url)">Try It !</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </span>
+        </mat-tab>
+    </ng-container>
+</mat-tab-group>

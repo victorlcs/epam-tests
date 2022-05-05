@@ -12,7 +12,7 @@ import { User } from '../models/user-model';
 export class AutocompleteComponent implements OnInit {
   form:FormGroup;
   matchedUser$:Observable<User[]>;
-
+  data:string;
   constructor(private fb:FormBuilder,private http: HttpClient) {
     this.form = this.fb.group({
       userName: new FormControl(null),
@@ -27,6 +27,10 @@ export class AutocompleteComponent implements OnInit {
         this.matchedUser$ = this.callApi(this.form.get('userName')?.value);
       }
     })
+    this.callApi('').subscribe(data => {
+      this.data = JSON.stringify(data);
+    })
+
   }
 
   callApi(str:string):Observable<User[]> {
