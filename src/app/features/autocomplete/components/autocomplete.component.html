@@ -6,10 +6,10 @@
              aria-label="User Name"
              matInput
              formControlName = "userName"
-             [matAutocomplete]="auto"
-             >
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of matchedUser$ | async" [value]="option.userName" (click)="onOptionClick(option.userId)">
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let option of matchedUser$ | async" [value]="option" 
+        (click)="onOptionClick(option.userId)">
           {{option.userName}}
         </mat-option>
       </mat-autocomplete>
@@ -24,4 +24,4 @@
     </mat-form-field>
   </form>
   <p>All Users : </p>
-  <p>{{data}}</p>
+  <textarea>{{data}}</textarea>
