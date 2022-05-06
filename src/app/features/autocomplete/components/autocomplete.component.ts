@@ -55,7 +55,6 @@ export class AutocompleteComponent implements OnInit {
 
   onOptionSelected(event:MatAutocompleteSelectedEvent ){
     if(event.option.value) {
-      //this.user = event.option.value;
       this.form.patchValue({userName:event.option.value.userName,userId:event.option.value.userId});
     }
   }
