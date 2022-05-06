@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { User } from '../models/user-model';
 
@@ -13,9 +14,11 @@ export class AutocompleteComponent implements OnInit {
   form:FormGroup;
   matchedUser$:Observable<User[]>;
   data:string;
+  user:User ;
+
   constructor(private fb:FormBuilder,private http: HttpClient) {
     this.form = this.fb.group({
-      userName: new FormControl(null),
+      userName: new FormControl(null,[Validators.required]),
       userId: new FormControl({value:null,disabled:true})
     }
     )
@@ -23,13 +26,18 @@ export class AutocompleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.get('userName')?.valueChanges.subscribe(value => {
-      if(this.form.valid && this.form.get('userName')?.value.length ===3){
+      if(this.form.valid && value.length ===3){
         this.matchedUser$ = this.callApi(this.form.get('userName')?.value);
       }
-    })
-    this.callApi('').subscribe(data => {
-      this.data = JSON.stringify(data);
-    })
+    });
+
+    this.callApi('').subscribe(
+    {next: (data) => {
+      this.data = JSON.stringify(data)
+    },error: (error:HttpErrorResponse) =>{
+      console.log(error.message);
+      this.data = `${error.message}. \nPlease run command <npm run start:server>`
+    }});
 
   }
 
@@ -41,4 +49,14 @@ export class AutocompleteComponent implements OnInit {
     this.form.get('userId')?.setValue(id);
   }
 
+  onKey(event:any){
+    console.log(event);
+  }
+
+  onOptionSelected(event:MatAutocompleteSelectedEvent ){
+    if(event.option.value) {
+      //this.user = event.option.value;
+      this.form.patchValue({userName:event.option.value.userName,userId:event.option.value.userId});
+    }
+  }
 }
