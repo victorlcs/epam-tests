@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
+    MatGridListModule
   ],
   exports : [
     ReactiveFormsModule,
@@ -28,7 +29,8 @@ import {MatButtonModule} from '@angular/material/button';
     HttpClientModule,
     MatTabsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
     ]
 })
 export class SharedModule { }

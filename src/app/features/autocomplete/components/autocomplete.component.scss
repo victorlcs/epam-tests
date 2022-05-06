@@ -1,11 +1,9 @@
-.example-form {
-    display: flex;
-    flex-direction: column;
-    min-width: 150px;
-    max-width: 250px;
-}
 
 textarea{
     width: 567px;
     min-height: 47px;
+}
+
+mat-grid-list {
+    width: 200px;
 }

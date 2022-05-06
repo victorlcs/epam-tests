@@ -1,4 +1,6 @@
+<mat-grid-list cols="1" rowHeight="50px">
 <form class="example-form" [formGroup]="form">
+  <mat-grid-tile colspan="1" rowspan="1">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>User Name</mat-label>
       <input type="text"
@@ -14,7 +16,8 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="1">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>User ID</mat-label>
       <input type="text"
@@ -22,6 +25,15 @@
              matInput
              formControlName = "userId">
     </mat-form-field>
-  </form>
+  </mat-grid-tile>
+</form>
+</mat-grid-list>
   <p>All Users : </p>
-  <textarea>{{data}}</textarea>
+<textarea>{{data}}</textarea>
+
+
+
+
+    
+    
+  
