@@ -1,6 +1,8 @@
 # EpamTests
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+1. npm install
+2. npm run start:server
+3. npm run start
 
 ## Angular test questions
 epam-tests/src/app/features
